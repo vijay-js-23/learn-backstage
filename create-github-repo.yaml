@@ -8,6 +8,7 @@ metadata:
     - github
     - repository
 spec:
+  type: service # Example type; adjust based on your use case
   owner: team-a
   parameters:
     - title: Repository Info
