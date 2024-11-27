@@ -1,0 +1,38 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: create-github-repo
+  title: Create GitHub Repository
+  description: A template to create a new GitHub repository
+  tags:
+    - github
+    - repository
+spec:
+  owner: team-a
+  parameters:
+    - title: Repository Info
+      properties:
+        repoName:
+          title: Repository Name
+          type: string
+          description: The name of the new GitHub repository
+        repoDescription:
+          title: Repository Description
+          type: string
+          description: A description for the repository
+        visibility:
+          title: Repository Visibility
+          type: string
+          enum:
+            - public
+            - private
+          default: private
+  steps:
+    - id: create-repo
+      name: Create GitHub Repository
+      action: github:create-repository
+      input:
+        repo:
+          name: ${{ parameters.repoName }}
+          description: ${{ parameters.repoDescription }}
+          visibility: ${{ parameters.visibility }}
